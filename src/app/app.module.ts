@@ -3,14 +3,25 @@ import { NgModule, Host } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HotelListComponent } from './hotel-list/hotel-list.components';
+/* import { ReplaceComma } from './shared/pipes/replace-comma.pipe';
+ */import { FormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import  localeFr  from '@angular/common/locales/fr';
+import { ReplaceComma } from './shared/pipes/replace-comma.pipe';
+import { StartRatingComponent } from './shared/components/star-rating/star-rating.component';
+
+registerLocaleData(localeFr,'fr');
 
 @NgModule({
   declarations: [
     AppComponent,
-    HotelListComponent
+    HotelListComponent,
+    ReplaceComma,
+    StartRatingComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

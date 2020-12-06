@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "mon-app"
+  "defaultProject": "mon-app",
+  "cli": {
+    "analytics": false
+  }
 }

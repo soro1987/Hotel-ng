@@ -1,14 +1,42 @@
 <div class="container">
-        <h5 >{{title}}</h5>
-    <h2 *ngIf="hotels && hotels.length>0">{{title}}</h2>
-    <div  class="row row-cols-1 row-cols-md-3">
-        <div class="col mb-4">
-          <div class="card">
-            <img src="..." class="card-img-top" alt="...">
+    <h2 *ngIf="hotels && hotels.length>0">{{ title }}</h2>
+    <button class="btn btn-primary d-flex" (click)="toggleIsNewBadge()">
+      <span class="material-icons">
+        {{showBadge ? 'visibility_off' : 'visibility'}}
+      </span>
+      <span class="ml-2">
+      {{showBadge ? 'Cacher' : 'Afficher'}} nouveau
+     </span>
+    </button>
+    <hr>
+    <div class="my-2">
+      <div class="row">
+        <div class="col-md-4">
+          <span class="filter">Filtre actuel :</span>
+          <b>{{hotelFilter}}</b>
+        </div>
+        <div class="col-md-8 form-group">
+          <input type="text" class="form-control" [(ngModel)]="hotelFilter">
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+          <div *ngFor="let hotel of filteredHotels" class="col-md-4">
+            <img 
+            [src]="hotel.imageUrl"
+            [title]="hotel.hotelName | uppercase"
+            class="card-img-top" 
+            [alt]="hotel.hotelName"
+            >
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <h5 class="card-title">{{hotel.hotelName |titlecase}}</h5>
+              <p class="card-text">{{hotel.description}}</p>
+              <p class="card-text">{{hotel.price | currency : 'EUR' : 'symbol' : '1.2-2' : 'fr'|replaceComma}}</p>
+              <app-star-rating></app-star-rating>
+              <span  class="badge badge-pill badge-info" *ngIf="showBadge" >Nouveau</span>
             </div>
           </div>
-        </div>
+    </div>
 </div>
+<!-- </div> -->
